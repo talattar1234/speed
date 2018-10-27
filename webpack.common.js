@@ -10,7 +10,8 @@ module.exports = {
   },
   plugins: [
       new HtmlWebpackPlugin({
-          title: 'Production'
+          title: 'Production',
+          template: "src/index.hbs"
       }),
       new CleanWebpackPlugin("./dist/*"),
       new MiniCssExtractPlugin({
@@ -42,6 +43,11 @@ module.exports = {
             use: {
               loader: 'babel-loader',
             }
+          },
+          {
+            test: /\.hbs$/,
+            exclude: /(node_modules|bower_components)/,
+            use: ["handlebars-loader"]
           }
          ]
        },
