@@ -7,7 +7,7 @@ const Index = () => {
 
     <Counter/>
       
-  </div>;
+  </div>; 
 };
 
 class Counter extends React.Component {
