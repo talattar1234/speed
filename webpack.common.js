@@ -11,7 +11,8 @@ module.exports = {
   plugins: [
       new HtmlWebpackPlugin({
           title: 'Production',
-          template: "src/index.hbs"
+          template: "src/index.hbs",
+          description: "this is description"
       }),
       new CleanWebpackPlugin("./dist/*"),
       new MiniCssExtractPlugin({

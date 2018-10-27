@@ -1,7 +1,9 @@
+import React from "react";
+import ReactDOM from "react-dom";
 import './style.scss';
-function Hi(){
 
+const Index = () => {
+  return <div>Hello React!</div>;
 };
 
-let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
-console.log(a.b); 
+ReactDOM.render(<Index />, document.getElementById("indexReact"));
