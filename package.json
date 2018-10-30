@@ -44,6 +44,7 @@
   "dependencies": {
     "handlebars": "^4.0.12",
     "handlebars-loader": "^1.7.0",
+    "normalize.css": "^8.0.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0"
   }
