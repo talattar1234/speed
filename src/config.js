@@ -1,6 +1,6 @@
 const CONFIG = {
 
-    lang: "he"
+    lang: "en"
 
 }
 

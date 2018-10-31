@@ -1,21 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Counter from "./components/Counter";
-import ControlledInput from "./components/ControlledInput";
-import ImageTest from "./components/ImageTest"
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
+
+import AppRouter from "./routers/AppRouter";
+
+
 import "normalize.css/normalize.css";
-import './styles/styles.scss';
+/*import './styles/styles.scss';*/
 
-const Index = () => {
-  return <div>Hello React!
+const store = configureStore();
 
-    <Counter/>
-      <ControlledInput/>
-      <ImageTest src="images/minion.jpg"/>
-  </div>; 
-};
+import CONFIG from './config';
+
+if(CONFIG.lang === 'en'){
+    require('./styles/styles_en.scss');
+}
+else{
+    //require('./styles/styles_he.scss');
+}
 
 
-
-
-ReactDOM.render(<Index />, document.getElementById("indexReact"));
+const jsx = (
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  );
+  
+ReactDOM.render(jsx, document.getElementById("indexReact"));
