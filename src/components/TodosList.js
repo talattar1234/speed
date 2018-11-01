@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {getVisibleTodos} from '../selectors/todosSelector';
 
 class TodosList extends React.Component {
 
@@ -19,7 +20,7 @@ class TodosList extends React.Component {
 }
 const mapStateToProps = (state, props) => {
   return {
-    todos: Object.values(state.todos)
+    todos: getVisibleTodos(state)
   };
 };
 export default connect(mapStateToProps)(TodosList);
