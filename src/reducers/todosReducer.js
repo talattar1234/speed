@@ -10,7 +10,9 @@ export default (state = todosReducerDefaultState, action) => {
         [action.todo.id]: action.todo
       };
     case 'REMOVE_TODO':
-      return state.filter(({ id }) => id !== action.id);
+      let newTodos = Object.assign({},state);
+      delete newTodos[action.id];
+      return newTodos;
     case 'EDIT_TODO':
         return {
           ...state,

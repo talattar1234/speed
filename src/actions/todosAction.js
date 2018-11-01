@@ -20,13 +20,13 @@ export const addTodo = (
 });
 
 // REMOVE_EXPENSE
-export const removeExpense = ({ id } = {}) => ({
+export const removeTodo = ( id = '') => ({
   type: 'REMOVE_TODO',
   id
 });
 
 // EDIT_EXPENSE
-export const editExpense = (id, updates) => ({
+export const editTodo = (id, updates) => ({
   type: 'EDIT_TODO',
   id,
   updates

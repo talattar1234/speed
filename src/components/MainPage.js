@@ -4,8 +4,8 @@ import ImageTest from "../components/ImageTest";
 import Counter from "../components/Counter";
 import TodosList from "../components/TodosList";
 
-class MainPage extends React.Component{
-
+class MainPage extends React.Component {
+    
     render(){
         return (
         <div>

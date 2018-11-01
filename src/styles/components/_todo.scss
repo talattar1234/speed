@@ -1,0 +1,19 @@
+.todo {
+    cursor: pointer;
+    display: flex;
+}
+
+
+.todo__description {
+    flex-grow: 1;
+    background: blue
+}
+
+.todo__actions {
+    display: flex;
+    width: 150px;
+}
+
+.todo__delete, .todo__edit {
+    width:50%;
+}
