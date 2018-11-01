@@ -9,7 +9,7 @@ import AppRouter from "./routers/AppRouter";
 import "normalize.css/normalize.css";
 /*import './styles/styles.scss';*/
 
-const store = configureStore();
+export const store = configureStore();
 
 import CONFIG from './config';
 
@@ -28,3 +28,6 @@ const jsx = (
   );
   
 ReactDOM.render(jsx, document.getElementById("indexReact"));
+
+store.dispatch({type: "ADD_TODO",todo: {id: '1', description:'3'} })
+store.dispatch({type: "ADD_TODO",todo: {id: '2', description:'4'} })

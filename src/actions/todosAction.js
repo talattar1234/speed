@@ -1,7 +1,7 @@
 import uuid from 'uuid';
 
-// ADD_EXPENSE
-export const addExpense = (
+// ADD_TODO
+export const addTodo = (
   {
     description = '',
     note = '',
@@ -9,8 +9,8 @@ export const addExpense = (
     createdAt = 0
   } = {}
 ) => ({
-  type: 'ADD_EXPENSE',
-  expense: {
+  type: 'ADD_TODO',
+  todo: {
     id: uuid(),
     description,
     note,
@@ -21,13 +21,13 @@ export const addExpense = (
 
 // REMOVE_EXPENSE
 export const removeExpense = ({ id } = {}) => ({
-  type: 'REMOVE_EXPENSE',
+  type: 'REMOVE_TODO',
   id
 });
 
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
-  type: 'EDIT_EXPENSE',
+  type: 'EDIT_TODO',
   id,
   updates
 });

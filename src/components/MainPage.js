@@ -2,7 +2,7 @@ import React from 'react';
 import ControlledInput from "../components/ControlledInput";
 import ImageTest from "../components/ImageTest";
 import Counter from "../components/Counter";
-
+import TodosList from "../components/TodosList";
 
 class MainPage extends React.Component{
 
@@ -13,6 +13,7 @@ class MainPage extends React.Component{
             <ControlledInput/>
             <Counter/>
             <ImageTest src="images/minion.jpg"/>
+            <TodosList/>
         </div>
     )}
 }

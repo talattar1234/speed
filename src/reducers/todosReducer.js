@@ -7,7 +7,7 @@ export default (state = todosReducerDefaultState, action) => {
     case 'ADD_TODO':
       return {
         ...state,
-        [action.id]: action.todo
+        [action.todo.id]: action.todo
       };
     case 'REMOVE_TODO':
       return state.filter(({ id }) => id !== action.id);
