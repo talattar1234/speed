@@ -23,7 +23,7 @@ class Modal extends React.Component {
                 contentLabel="Example Modal"*/
             >
 
-            {ModalTemplate && <ModalTemplate/>}
+            {ModalTemplate && <ModalTemplate {...this.props._modalPropsPayload}/>}
             
             </ModalReact>
 
