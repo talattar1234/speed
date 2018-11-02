@@ -1,10 +1,10 @@
 // SET_MODAL_VISIBILITY
-export const setModalOptions = ({modalVisibility = 'false', modalType, modalPropsPayload} = {}) => ({
+export const setModalOptions = ({visibility = 'false', type, propsPayload} = {}) => ({
   type: 'SET_MODAL_OPTIONS',
   modalOptions:{
-    modalType,
-    modalVisibility,
-    modalPropsPayload
+    type,
+    visibility,
+    propsPayload
   }
   
   

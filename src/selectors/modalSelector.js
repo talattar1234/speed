@@ -5,6 +5,7 @@ export const getModalVisibility = (state) => {
 export const getModalType = (state) => {
     return state.modal.type;
 }
+
 export const getModalPropsPayload = (state) => {
     return state.modal.propsPayload;
 }

@@ -1,18 +1,22 @@
 // Expenses Reducer
 const modalReducerDefaultState = {
   isModalVisible: false,
-  modalType: '',
-  modalPropsPayload: {}
+  type: '',
+  role: '',
+  propsPayload: {}
 };
 
 export default (state = modalReducerDefaultState, action) => {
   switch (action.type) {
     case 'SET_MODAL_OPTIONS':
+      const newIsModaleVisible = action.modalOptions.visibility;
+      const newType = action.modalOptions.type;
+      const newPropsPayload = action.modalOptions.propsPayload;
       return {
        ...state,
-        isModalVisible: action.modalOptions.modalVisibility !== undefined  ? action.modalOptions.modalVisibility : state.isModalVisible,
-        modalType: action.modalOptions.modalType !== undefined  ? action.modalOptions.modalType : state.modalType,
-        modalPropsPayload: action.modalOptions.modalPropsPayload !== undefined  ? action.modalOptions.modalPropsPayload : state.modalPropsPayload
+        isModalVisible: newIsModaleVisible !== undefined  ? newIsModaleVisible : state.isModalVisible,
+        type: newType !== undefined  ? newType : state.type,
+        propsPayload: newPropsPayload !== undefined ? newPropsPayload : state.propsPayload
 
       }
 /*

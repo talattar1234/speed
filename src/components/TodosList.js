@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {getVisibleTodos} from '../selectors/todosSelector';
 import Todo from "../components/Todo";
-import {removeTodo as removeTodoLogic} from '../logics/todosLogic';
+import {
+        removeTodo as removeTodoLogic,
+        openTodoModal as openTodoModalLogic} from '../logics/todosLogic';
 
 class TodosList extends React.Component {
     handleEditTodo = (id) => {
@@ -11,12 +13,16 @@ class TodosList extends React.Component {
 
     handleRemoveTodo = (id) => {
         removeTodoLogic(id)
-        
     }
     
+    addTodo = () => {
+        openTodoModalLogic();
+    }
+
     render() {
         return(
         <div>
+            <button onClick={this.addTodo}>Add TODO</button>
             {
                 this.props.todos.map((todo)=>(
                 <Todo
@@ -29,6 +35,7 @@ class TodosList extends React.Component {
                 
             ))
             }
+            
         </div>)
     }
 
