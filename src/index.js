@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import CONFIG from './config';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 
 import AppRouter from "./routers/AppRouter";
-
-
 import "normalize.css/normalize.css";
 /*import './styles/styles.scss';*/
 
+import {openModal, closeModal } from './logics/modalLogic';
+
 export const store = configureStore();
 
-import CONFIG from './config';
 
 if(CONFIG.lang === 'en'){
     require('./styles/styles_en.scss');
@@ -31,3 +31,8 @@ ReactDOM.render(jsx, document.getElementById("indexReact"));
 
 store.dispatch({type: "ADD_TODO",todo: {id: '1', description:'3'} })
 store.dispatch({type: "ADD_TODO",todo: {id: '2', description:'4'} })
+
+openModal();
+setTimeout(()=>{
+    closeModal()
+},3000)
