@@ -2,11 +2,11 @@ import {store} from '../index';
 
 import {setModalOptions as setModalOptionsAction} from "../actions/modalAction"
 
-export const openModal = ({type}={}) => {
+export const openModal = ({modalType, propsPayload}={}) => {
 
-    store.dispatch(setModalOptionsAction({modalVisibility: true}))
+    store.dispatch(setModalOptionsAction({modalVisibility: true ,modalType ,propsPayload }))
 }
 
-export const closeModal = ({type}={}) => {
+export const closeModal = () => {
     store.dispatch(setModalOptionsAction({modalVisibility: false}))
 }
