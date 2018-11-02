@@ -4,7 +4,7 @@ import {getVisibleTodos} from '../selectors/todosSelector';
 import Todo from "../components/Todo";
 import {
         removeTodo as removeTodoLogic,
-        openTodoModal as openTodoModalLogic} from '../logics/todosLogic';
+        openNewTodoModal as openNewTodoModalLogic} from '../logics/todosLogic';
 
 class TodosList extends React.Component {
     handleEditTodo = (id) => {
@@ -16,7 +16,7 @@ class TodosList extends React.Component {
     }
     
     addTodo = () => {
-        openTodoModalLogic();
+        openNewTodoModalLogic();
     }
 
     render() {
