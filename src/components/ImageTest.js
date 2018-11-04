@@ -5,7 +5,6 @@ class ImageTest extends React.Component{
     render() {
         const style = {
             height: '200',
-      
         }
         return (
         <div style={style}>

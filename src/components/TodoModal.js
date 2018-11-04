@@ -1,13 +1,24 @@
 import React from 'react';
 import {_closeModal as _closeModalLogic } from "../logics/todosLogic";
-import ENUM from '../enum'
+import ENUM from '../enum';
+
+
+
 class TodoModal extends React.Component{
 
+    state = {
+        description: this.props.description
+    }
+
     _closeModal = (action) => {
-        //collectPayload
-       const res =  _closeModalLogic({action,payload: {}});
+        const payload = {
+            description: this.state.description,
+            id: this.props.id
+        }
+       const res =  _closeModalLogic({action,payload});
     }
     handleButtonAdd = () => {
+        
         this._closeModal(ENUM.ModalAction.ADD);
     }
     handleButtonUpdate = () => {
@@ -15,6 +26,13 @@ class TodoModal extends React.Component{
     }
     handleButtonCancel = () => {
         this._closeModal(ENUM.ModalAction.CANCEL);
+    }
+
+    onDescriptionChange = (e) => {
+        const newDescription = e.target.value;
+        this.setState(()=> ({
+            description: newDescription
+        }))
     }
 
     renderRoleButton(role){
@@ -31,7 +49,11 @@ class TodoModal extends React.Component{
 
         return (
         <div>
-            <input>{this.props.description}</input>
+            <input
+        
+                value={this.state.description || ""}
+                onChange = {this.onDescriptionChange}
+                ></input>
             {
             
                 this.renderRoleButton(this.props.modalRole)

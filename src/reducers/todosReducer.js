@@ -13,12 +13,12 @@ export default (state = todosReducerDefaultState, action) => {
       let newTodos = Object.assign({},state);
       delete newTodos[action.id];
       return newTodos;
-    case 'EDIT_TODO':
+    case 'UPDATE_TODO':
         return {
           ...state,
           [action.id]: {
             ...state[action.id],
-            ...action.todo
+            ...action.updates
           }
         }
       

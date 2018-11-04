@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {getVisibleTodos} from '../selectors/todosSelector';
+import { getVisibleTodos } from '../selectors/todosSelector';
 import Todo from "../components/Todo";
 import {
         removeTodo as removeTodoLogic,
-        openNewTodoModal as openNewTodoModalLogic} from '../logics/todosLogic';
+        openNewTodoModal as openNewTodoModalLogic,
+        openEditTodoModal as openEditTodoModalLogic
+    } from '../logics/todosLogic';
 
 class TodosList extends React.Component {
     handleEditTodo = (id) => {
-        alert(id)
+        openEditTodoModalLogic({id})
     }
 
     handleRemoveTodo = (id) => {
@@ -21,8 +23,17 @@ class TodosList extends React.Component {
 
     render() {
         return(
-        <div>
-            <button onClick={this.addTodo}>Add TODO</button>
+        <div className="todo-list">
+            <h2 className="todo-list__header">{this.props.title}</h2>
+            <div className="todo-list__actions"> 
+                <div 
+                    className="todo-list__add-button"
+                    onClick={this.addTodo}>
+                        + Add TODO
+                </div>
+            </div>
+
+            <div className="todo-list__all-items">
             {
                 this.props.todos.map((todo)=>(
                 <Todo
@@ -35,11 +46,16 @@ class TodosList extends React.Component {
                 
             ))
             }
+            </div>
             
         </div>)
     }
 
 }
+TodosList.defaultProps = {
+    headerText: 'Items'
+}
+
 const mapStateToProps = (state, props) => {
   return {
     todos: getVisibleTodos(state)

@@ -10,7 +10,7 @@ import Header from '../components/Header';
 const AppRouter = () => (
     <BrowserRouter>
       <div>
-        <Header />
+        <Header title="CodeValue Exercise - Tal Attar" />
         <Switch>
           <Route path="/" component={MainPage} exact={true} />
           <Route component={NotFoundPage} />

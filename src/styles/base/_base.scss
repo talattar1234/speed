@@ -1,11 +1,18 @@
-
-
-
 html {
     font-size: 62.5%;
 }
 body {
+    backgroun: $light-gray;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: $m-size;
-    padding-#{$left}: 200px;
+    font-size:  $m-size;
 }
+
+#indexReact {
+    margin: 0 15px;
+    /*padding-#{$left}: 200px;*/
+    @media screen and (min-width: $break-large) {
+        width: $break-large;
+        margin: 0 auto;
+    }
+}
+

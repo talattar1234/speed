@@ -1,12 +1,14 @@
 import React from 'react';
 
-const header = () => {
+const Header = (props) => {
     return (
-        <div>
-            this is headerrrrr
-        </div>
+        <h1 className="header">
+            {props.title}
+        </h1>
     )
-
 }
 
-export default header;
+Header.defaultProps = {
+    text: 'Unknown Header'
+}
+export default Header;

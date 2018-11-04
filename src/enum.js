@@ -10,6 +10,11 @@ const ENUM = {
     ModalRole: {
         ADD: "ADD",
         EDIT: "EDIT"
+    },
+    SortType: {
+        CREATED_BY_NEWEST_FIRST: "CREATED_BY_NEWEST_FIRST",
+        CREATED_BY_OLDEST_FIRST: "CREATED_BY_OLDEST_FIRST"
+
     }
 
 }

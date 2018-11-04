@@ -1,0 +1,33 @@
+.todo-list__header {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.todo-list__all-items {
+    display: grid;
+    grid-row-gap: 1rem;
+}
+
+
+.todo-list__actions{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.todo-list__add-button {
+    background: $green;
+    cursor: pointer;
+    border-radius: 2rem;
+    width: 150px;
+    text-align: center;
+    padding: 1rem 2.5rem;
+    margin-bottom: 1rem;
+    
+}
+.todo-list__add-button:hover {
+    background: darken($green, 10%);
+}
+
+.todo-list__add-button:active {
+    background: darken($green, 20%);
+}

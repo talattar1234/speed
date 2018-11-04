@@ -12,7 +12,11 @@ class Todo extends React.Component{
     render(){
         return (
         <div className="todo">
-            <div className="todo__description">{this.props.todo.id}</div>
+            <div className="todo__details">
+                <div>Description: {this.props.todo.description}</div>
+                <div>CreatedAt : {this.props.todo.createdAt}</div>
+            </div>
+            
             <div className="todo__actions">
                 <div onClick={this.handleEditTodo} className="todo__edit">edit</div>
                 <div onClick={this.handleRemoveTodo} className="todo__remove" >remove</div>

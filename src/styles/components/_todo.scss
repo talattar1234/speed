@@ -1,12 +1,20 @@
 .todo {
-    cursor: pointer;
     display: flex;
+    height: 70px;
+    background: $blue;
 }
 
+.todo:hover {
+    background: darken($blue, 10%);
+}
 
-.todo__description {
+.todo:active {
+    background: darken($blue, 20%);
+}
+
+.todo__details {
     flex-grow: 1;
-    background: blue
+    
 }
 
 .todo__actions {
@@ -14,6 +22,7 @@
     width: 150px;
 }
 
-.todo__delete, .todo__edit {
+.todo__remove, .todo__edit {
+    cursor: pointer;
     width:50%;
 }

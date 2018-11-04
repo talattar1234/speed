@@ -29,6 +29,6 @@ const jsx = (
   
 ReactDOM.render(jsx, document.getElementById("indexReact"));
 
-store.dispatch({type: "ADD_TODO",todo: {id: '1', description:'3'} })
-store.dispatch({type: "ADD_TODO",todo: {id: '2', description:'4'} })
+store.dispatch({type: "ADD_TODO",todo: {id: '1', description:'step by step',createdAt: Date.now()} })
+store.dispatch({type: "ADD_TODO",todo: {id: '2', description:'ste3',createdAt: Date.now()} })
 
