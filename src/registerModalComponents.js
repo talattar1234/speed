@@ -1,9 +1,10 @@
 import Modal from './components/Modal';
 import ENUM from './enum';
 import TodoModal from './components/TodoModal';
+import {registerComponentsPerType} from './logics/modalLogic';
 
 const registerModal = () => {
-    Modal.registerComponentsPerType(ENUM.ObjectType.TODO,TodoModal)
+    registerComponentsPerType(ENUM.ObjectType.TODO,TodoModal)
 }
 
 export default registerModal;

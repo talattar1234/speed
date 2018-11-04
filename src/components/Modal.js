@@ -2,17 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getModalVisibility, getModalType, getModalPropsPayload } from '../selectors/modalSelector';
 import {default as ModalReact} from 'react-modal';
+import {getModalComponentByType} from '../logics/modalLogic';
 
 ModalReact.setAppElement('body');
 
 class Modal extends React.Component {
-    static typeToComponent = {};
-
-    static registerComponentsPerType = (type,component) => {
-        Modal.typeToComponent[type] = component;
-    }
+   
+    
     render(){
-        const ModalTemplate = Modal.typeToComponent[this.props._modalType];
+        const ModalTemplate = getModalComponentByType(this.props._modalType);
         return (
         <div>
             <ModalReact
