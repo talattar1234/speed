@@ -3,7 +3,8 @@ const modalReducerDefaultState = {
   isModalVisible: false,
   type: '',
   role: '',
-  propsPayload: {}
+  propsPayload: {},
+  reactModalProps: {}
 };
 
 export default (state = modalReducerDefaultState, action) => {
@@ -12,12 +13,13 @@ export default (state = modalReducerDefaultState, action) => {
       const newIsModaleVisible = action.modalOptions.visibility;
       const newType = action.modalOptions.type;
       const newPropsPayload = action.modalOptions.propsPayload;
+      const newReactModalProps = action.modalOptions.propsPayload;
       return {
        ...state,
         isModalVisible: newIsModaleVisible !== undefined  ? newIsModaleVisible : state.isModalVisible,
         type: newType !== undefined  ? newType : state.type,
-        propsPayload: newPropsPayload !== undefined ? newPropsPayload : state.propsPayload
-
+        propsPayload: newPropsPayload !== undefined ? newPropsPayload : state.propsPayload,
+        reactModalProps: newReactModalProps !== undefined ? newReactModalProps : state.reactModalProps
       }
 /*
     case 'SET_MODAL_VISIBILITY':

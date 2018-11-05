@@ -9,3 +9,7 @@ export const getModalType = (state) => {
 export const getModalPropsPayload = (state) => {
     return state.modal.propsPayload;
 }
+
+export const getReactModalProps = (state) => {
+    return state.modal.reactModalProps
+}

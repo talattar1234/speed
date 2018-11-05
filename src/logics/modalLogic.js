@@ -13,8 +13,8 @@ export const getModalComponentByType = (type) => {
     return typeToModalComponent[type];
 }
 
-export const openModal = ({type, propsPayload}={}) => {
-    store.dispatch(setModalOptionsAction({visibility: true ,type ,propsPayload }))
+export const openModal = ({type, propsPayload, reactModalProps}={}) => {
+    store.dispatch(setModalOptionsAction({visibility: true ,type ,propsPayload, reactModalProps}))
 }
 
 export const closeModal = () => {

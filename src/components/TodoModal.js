@@ -2,8 +2,6 @@ import React from 'react';
 import {_closeModal as _closeModalLogic } from "../logics/todosLogic";
 import ENUM from '../enum';
 
-
-
 class TodoModal extends React.Component{
 
     state = {
@@ -48,19 +46,27 @@ class TodoModal extends React.Component{
     render(){
 
         return (
-        <div>
+        <div className="todo-modal">
             <input
         
                 value={this.state.description || ""}
                 onChange = {this.onDescriptionChange}
                 ></input>
-            {
+                
+                <div className='todo-modal__actions'>
+                    <div>
+                        {
+                            this.renderRoleButton(this.props.modalRole)
+                        }
+                    </div>
+
+                    <div>
+                        <button onClick={this.handleButtonCancel}>Cancel</button>
+                    </div>
+                </div>
+                
             
-                this.renderRoleButton(this.props.modalRole)
-                  
-            }
             
-            <button onClick={this.handleButtonCancel}>Cancel</button>
         </div>
     )}
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getModalVisibility, getModalType, getModalPropsPayload } from '../selectors/modalSelector';
-import {default as ModalReact} from 'react-modal';
+import { getModalVisibility, getModalType, getModalPropsPayload, getReactModalProps } from '../selectors/modalSelector';
+import {default as ReactModal} from 'react-modal';
 import {getModalComponentByType} from '../logics/modalLogic';
 
-ModalReact.setAppElement('body');
+ReactModal.setAppElement('body');
 
 class Modal extends React.Component {
    
@@ -13,8 +13,9 @@ class Modal extends React.Component {
         const ModalTemplate = getModalComponentByType(this.props._modalType);
         return (
         <div>
-            <ModalReact
+            <ReactModal
                 isOpen={this.props._isModalOpen}
+                {...this.props._propsReactModal}
                 /*onAfterOpen={this.afterOpenModal}
                 onRequestClose={this.closeModal}
                 style={customStyles}
@@ -23,7 +24,7 @@ class Modal extends React.Component {
 
             {ModalTemplate && <ModalTemplate {...this.props._modalPropsPayload}/>}
             
-            </ModalReact>
+            </ReactModal>
 
         </div>
         )
@@ -35,6 +36,7 @@ const mapStateToProps = (state, props) => {
         ...getModalPropsPayload,
       _isModalOpen: getModalVisibility(state),
       _modalType: getModalType(state),
+      _propsReactModal: getReactModalProps(state),
       _modalPropsPayload: getModalPropsPayload(state)
     };
   };

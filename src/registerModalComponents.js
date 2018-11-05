@@ -1,4 +1,3 @@
-import Modal from './components/Modal';
 import ENUM from './enum';
 import TodoModal from './components/TodoModal';
 import {registerComponentsPerType} from './logics/modalLogic';
