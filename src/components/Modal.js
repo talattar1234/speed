@@ -16,6 +16,7 @@ class Modal extends React.Component {
             <ReactModal
                 isOpen={this.props._isModalOpen}
                 {...this.props._propsReactModal}
+                closeTimeoutMS = {200}
                 /*onAfterOpen={this.afterOpenModal}
                 onRequestClose={this.closeModal}
                 style={customStyles}
