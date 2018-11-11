@@ -1,4 +1,5 @@
 import React from 'react';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getVisibleTodos } from '../selectors/todosSelector';
 import Todo from "../components/Todo";
@@ -32,21 +33,34 @@ class TodosList extends React.Component {
                         + Add TODO
                 </div>
             </div>
+           
 
-            <div className="todo-list__all-items">
+   
+            <TransitionGroup
+                 className="todo-list__all-items"
+
+            >
             {
                 this.props.todos.map((todo)=>(
+                    <CSSTransition
+                        key = {todo.id}
+                        timeout={1000}
+                        classNames="fade"
+                    >
                 <Todo
                  key={todo.id}
                  todo={todo}
                  onRemoveTodo={this.handleRemoveTodo}
                  onEditTodo = {this.handleEditTodo}
                 />
+
+                </CSSTransition>
                     
                 
             ))
             }
-            </div>
+            </TransitionGroup>
+           
             
         </div>)
     }
