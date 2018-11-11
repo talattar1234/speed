@@ -1,4 +1,5 @@
 import React from 'react';
+import "regenerator-runtime/runtime";
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import Page2 from '../components/Page2';
 

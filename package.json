@@ -21,6 +21,7 @@
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-async-to-generator": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
@@ -43,11 +44,12 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "handlebars": "^4.0.12",
     "handlebars-loader": "^1.7.0",
     "normalize.css": "^8.0.0",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1",
     "react-modal": "^3.6.1",
     "react-redux": "^5.1.0",
     "react-router": "^4.3.1",
