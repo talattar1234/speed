@@ -1,12 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "regenerator-runtime/runtime";
 import CONFIG from './config';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import { test } from "./_test"
-import AppRouter from "./routers/AppRouter";
+
 import "normalize.css/normalize.css";
 /*import './styles/styles.scss';*/
+import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
+
+
+import indexRoutes from "./routers";
+
+
 
 
 
@@ -23,7 +30,18 @@ else{
 
 const jsx = (
     <Provider store={store}>
-      <AppRouter />
+       <BrowserRouter>
+      <div>
+        <Switch>
+            {
+                indexRoutes.map((prop,key)=>{
+                    return <Route path={prop.path} component={prop.component} exact={prop.exact} key={key} />
+                })
+            }
+   
+        </Switch>
+      </div>
+    </BrowserRouter>
     </Provider>
   );
   

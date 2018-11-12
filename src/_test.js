@@ -7,8 +7,8 @@ export const test = () => {
         url: 'https://httpb3in.org/get',
         timeout: 3000
     }}).then((data)=>{
-        alert(JSON.stringify(data))}).catch(()=>{
-            alert("fucking ajax error")
+       // alert(JSON.stringify(data))}).catch(()=>{
+          //  alert("fucking ajax error")
         
     })
 }
