@@ -1,6 +1,7 @@
 const CONFIG = {
 
-    lang: "en"
+    lang: "en",
+    direction: "rtl"
 
 }
 
