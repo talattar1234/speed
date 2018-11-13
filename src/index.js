@@ -25,6 +25,9 @@ const jss = create({plugins: [...jssPreset().plugins, rtl()]});
 const generateClassName = createGenerateClassName();
 const theme = createMuiTheme({
     direction: CONFIG.direction,
+    typography: {
+        useNextVariants: true,
+      }
 });
 function RTL(props) {
     return (
@@ -53,7 +56,7 @@ const jsx = (
                 <Switch>
                     {
                         indexRoutes.map((prop,key)=>{
-                            return <Route path={prop.path} component={prop.component} key={key} />
+                            return <Route path={prop.path} component={prop.component} exact={prop.exact} key={key} />
                         })
                     }
                 </Switch>     

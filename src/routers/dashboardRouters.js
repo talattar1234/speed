@@ -1,8 +1,9 @@
 import  MainPage from "../components/MainPage";
-
+import Dashboard from "../layouts/Dashboard/Dashboard";
 const dashboardRouters = [
+  /*{ redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" },*/
     {
-      path: "/dashboard",
+      path: "/",
       sidebarName: "Dashboard",
       navbarName: "Material Dashboard",
       icon: "Dashboard",
@@ -10,7 +11,7 @@ const dashboardRouters = [
     },
 
    
-    { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
+  
 ]
 
 export default dashboardRouters;
