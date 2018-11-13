@@ -10,12 +10,8 @@ import "normalize.css/normalize.css";
 /*import './styles/styles.scss';*/
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 
-
 import indexRoutes from "./routers";
-
-
-
-
+import { getModalPropsPayload } from "./selectors/modalSelector";
 
 export const store = configureStore();
 
@@ -31,16 +27,16 @@ else{
 const jsx = (
     <Provider store={store}>
        <BrowserRouter>
-      <div>
+     
         <Switch>
             {
                 indexRoutes.map((prop,key)=>{
-                    return <Route path={prop.path} component={prop.component} exact={prop.exact} key={key} />
+                    return <Route path={prop.path} component={prop.component} key={key} />
                 })
             }
    
         </Switch>
-      </div>
+     
     </BrowserRouter>
     </Provider>
   );

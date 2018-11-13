@@ -6,7 +6,7 @@ import NotFoundPage from "../layouts/NotFoundPage";
 const indexRoutes = [
   { path: "/page2", component: Page2},
   { path: "/login", component: Login },
-  { path: "/", component: Dashboard, exact: true},
+  { path: "/", component: Dashboard},
   { component: NotFoundPage }
 
 ];
