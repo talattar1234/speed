@@ -56,7 +56,7 @@ const jsx = (
                 <Switch>
                     {
                         indexRoutes.map((prop,key)=>{
-                            return <Route path={prop.path} component={prop.component} exact={prop.exact} key={key} />
+                            return <Route path={prop.path} component={prop.component} key={key} />
                         })
                     }
                 </Switch>     
