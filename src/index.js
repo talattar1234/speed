@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "regenerator-runtime/runtime";
-import 'typeface-roboto';
 import CONFIG from './config';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
