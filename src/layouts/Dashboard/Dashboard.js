@@ -1,14 +1,18 @@
 import React from 'react';
 import {Switch, Route, Redirect, NavLink} from 'react-router-dom';
 
+import DashboardHeader from './DashboardHeader';
+
+
 
 
 import dashboardRouters from "../../routers/dashboardRouters";
 class Dashboard extends React.Component{
 
     render(){
-        return (<div>
-            This is dashboard
+        return (
+        <div>
+           <DashboardHeader/>
         
         <div>
             This is side menu
