@@ -1,7 +1,4 @@
 import React from 'react';
-
-import {TextField} from '@material-ui/core';
-
 import TodosList from "../../components/TodosList";
 import Filter from "../../components/Filter";
 import Sort from "../../components/Sort";
@@ -22,7 +19,7 @@ class Todos extends React.Component {
             <Counter />
             <ImageTest src="images/minion.jpg" />
             */}
-            <TextField type="text" label="name" />
+       
                 
         
             <Sort />
