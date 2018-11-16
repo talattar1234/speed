@@ -9,7 +9,7 @@ const theme = createMuiTheme({
       },
     typography: {
         useNextVariants: true,
-        htmlFontSize: 16,
+        /*htmlFontSize: 16,*/
       }
 });
 

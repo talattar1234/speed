@@ -6,11 +6,8 @@ import CONFIG from './config';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import { test } from "./_test"
-import {create} from 'jss';
-import rtl from 'jss-rtl';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {createGenerateClassName, jssPreset, MuiThemeProvider} from '@material-ui/core/styles';
-
+import {MuiThemeProvider} from '@material-ui/core/styles';
+import {RTL, LTR} from './direction';
 
 /*import './styles/styles.scss';*/
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
@@ -20,18 +17,8 @@ import { getModalPropsPayload } from "./selectors/modalSelector";
 import theme from "./Themes/Theme";
 export const store = configureStore();
 
+const DirectionWrapper = CONFIG.direction == "ltr" ? LTR : RTL
 
-const jss = create({plugins: [...jssPreset().plugins, rtl()]});
-const generateClassName = createGenerateClassName();
-
-
-function RTL(props) {
-    return (
-      <JssProvider jss={jss} generateClassName={generateClassName}>
-        {props.children}
-      </JssProvider>
-    );
-  }
 
 if(CONFIG.lang === 'en'){
     require('./styles/styles_en.scss');
@@ -40,12 +27,12 @@ else{
     //require('./styles/styles_he.scss');
 }
 
-    document.body.dir = CONFIG.direction;
+document.body.dir = CONFIG.direction;
 
 
 
 const jsx = (
-    <RTL>
+    <DirectionWrapper>
         <MuiThemeProvider theme={theme}>
             <Provider store={store}>
             <BrowserRouter>
@@ -63,7 +50,7 @@ const jsx = (
             </BrowserRouter>
             </Provider>
         </MuiThemeProvider>
-    </RTL>
+    </DirectionWrapper>
   );
   
 ReactDOM.render(jsx, document.getElementById("indexReact"));

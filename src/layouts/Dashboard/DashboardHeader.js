@@ -1,25 +1,27 @@
 import React from 'react';
-import {AppBar, Toolbar, Typography} from '@material-ui/core';
+import {AppBar, Toolbar, Typography, Tab} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = {
+const styles = (theme) => ({
     root: {
         display: "flex",
-        justifyContent: "space-between"
-    }
-}
+        justifyContent: "space-between",
+   
+    },
+  
+});
 
 class DashboardHeader extends React.Component {
    
     render(){
-       // const {root} = this.props.classes;
+        const {root} = this.props.classes;
 
         return (
             <div>
                 <AppBar position="sticky" color="primary">
-                  <Toolbar style={styles} color="primary">
+                  <Toolbar className={root} color="primary">
                     <IconButton color="inherit">
                         <MenuIcon/>
                     </IconButton>
@@ -32,4 +34,4 @@ class DashboardHeader extends React.Component {
         )
     }
 }
-export default (DashboardHeader);
+export default withStyles(styles)(DashboardHeader);
