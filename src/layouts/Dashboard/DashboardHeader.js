@@ -14,7 +14,7 @@ class DashboardHeader extends React.Component {
     render(){
         return (
             <div>
-                  <AppBar position="sticky">
+                <AppBar position="sticky">
                   <Toolbar style={styles.root}>
                     <IconButton color="inherit">
                         <MenuIcon/>
@@ -23,10 +23,9 @@ class DashboardHeader extends React.Component {
                         My Dashboard Toolbar
                     </Typography>
                     </Toolbar>
-            </AppBar>
+                </AppBar>
             </div>
         )
     }
-
 }
 export default DashboardHeader;
