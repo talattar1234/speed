@@ -46,7 +46,7 @@ class Dashboard extends React.Component {
                     </LTR>
 
                     <div className = {ele1}>
-                        This is responsive element - {width}
+                        This is a responsive element - {width}
                     </div>
 
                     
