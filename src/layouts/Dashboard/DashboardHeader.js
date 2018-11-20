@@ -6,26 +6,28 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
     root: {
-        display: "flex",
-        justifyContent: "space-between",
-   
+        zIndex: theme.zIndex.drawer + 1,
     },
+    toolBar: {
+        display: "flex",
+        /*  justifyContent: "space-between",*/
+    }
   
 });
 
 class DashboardHeader extends React.Component {
    
     render(){
-        const {root} = this.props.classes;
+        const {root, toolBar} = this.props.classes;
 
         return (
             <div>
-                <AppBar position="sticky" color="primary">
-                  <Toolbar className={root} color="primary">
+                <AppBar position="sticky" color="primary" className={root}>
+                  <Toolbar className={toolBar} color="primary">
                     <IconButton color="inherit">
                         <MenuIcon/>
                     </IconButton>
-                    <Typography variant="h3" color="inherit">
+                    <Typography variant="h5" color="inherit">
                         My Dashboard Toolbar
                     </Typography>
                     </Toolbar>
