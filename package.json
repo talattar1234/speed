@@ -48,6 +48,7 @@
     "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",
     "axios": "^0.18.0",
+    "classnames": "^2.2.6",
     "handlebars": "^4.0.12",
     "handlebars-loader": "^1.7.0",
     "jss-rtl": "^0.2.3",

@@ -31,14 +31,15 @@ class Dashboard extends React.Component{
 
                 {/* left menu drawer */}
 
-                <div >
-                    This is side menu
-                    <DashbaordDrawer/>
+                
+                   
+                    <DashbaordDrawer open={false} drawerWidth="250px" />
 
-                    
-                    <NavLink to="/dashboard">dashboard</NavLink>
-                    <NavLink to="/todos">todos</NavLink>
-                </div>
+                    {/* 
+                        <NavLink to="/dashboard">dashboard</NavLink>
+                        <NavLink to="/todos">todos</NavLink>
+                    */}
+                   
 
                 {/* right menu content */}
 
