@@ -14,6 +14,7 @@ const styles = theme => ({
       width: drawerWidth,
       flexShrink: 0,
       whiteSpace: 'nowrap',
+    
     },
     drawerOpen: {
       width: drawerWidth,

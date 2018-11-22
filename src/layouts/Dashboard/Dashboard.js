@@ -14,16 +14,22 @@ const styles = (theme) => ({
 })
 
 class Dashboard extends React.Component{
-    
+    state = {
+        isMenuOpen: true
+    }
 
-
+    handleMenuButtonClick = () =>{
+        this.setState((prevState)=>({
+            isMenuOpen: !prevState.isMenuOpen
+        }))
+    }
     render(){
         const {root, appBar} = this.props.classes;
 
         return (
         <div>
             <div className={appBar}>
-                <DashboardHeader/>
+                <DashboardHeader onMenuButtonClick = {this.handleMenuButtonClick}/>
             </div>
 
 
@@ -33,7 +39,7 @@ class Dashboard extends React.Component{
 
                 
                    
-                    <DashbaordDrawer open={false} drawerWidth="250px" />
+                    <DashbaordDrawer open={this.state.isMenuOpen} drawerWidth="250px" />
 
                     {/* 
                         <NavLink to="/dashboard">dashboard</NavLink>

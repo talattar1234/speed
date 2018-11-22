@@ -16,7 +16,9 @@ const styles = (theme) => ({
 });
 
 class DashboardHeader extends React.Component {
-   
+   onMenuButtonClick = ()=> {
+       this.props.onMenuButtonClick();
+   }
     render(){
         const {root, toolBar} = this.props.classes;
 
@@ -24,7 +26,7 @@ class DashboardHeader extends React.Component {
             <div>
                 <AppBar position="sticky" color="primary" className={root}>
                   <Toolbar className={toolBar} color="primary">
-                    <IconButton color="inherit">
+                    <IconButton color="inherit" onClick={this.onMenuButtonClick}>
                         <MenuIcon/>
                     </IconButton>
                     <Typography variant="h5" color="inherit">
