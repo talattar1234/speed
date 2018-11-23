@@ -49,7 +49,7 @@ class Dashboard extends React.Component{
 
                 {/* right menu content */}
 
-                <div>
+                <div style={{flexGrow: 1}}>
                     <Switch>
                     {
                         dashboardRouters.map((prop, key) => {
