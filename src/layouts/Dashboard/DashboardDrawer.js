@@ -9,6 +9,7 @@ const drawerWidth = 240;
 const styles = theme => ({
     root: {
       display: 'flex',
+      zIndex: theme.zIndex.drawer
     },
     drawer: {
       width: drawerWidth,
@@ -33,6 +34,9 @@ const styles = theme => ({
       [theme.breakpoints.up('sm')]: {
         width: theme.spacing.unit * 9 + 1,
       },
+      '&:hover': {
+        width: drawerWidth,
+      }
     },
 
     drawerPaper: {

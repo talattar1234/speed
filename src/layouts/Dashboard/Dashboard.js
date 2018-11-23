@@ -6,11 +6,31 @@ import {Switch, Route, Redirect, NavLink} from 'react-router-dom';
 import DashboardHeader from './DashboardHeader';
 import DashbaordDrawer from './DashboardDrawer';
 import dashboardRouters from "../../routers/dashboardRouters";
+import classNames from 'classnames';
 
 const styles = (theme) => ({
     root: {
-        display: "flex"
-    }
+      /*  display: "flex"*/
+    },
+    contentPane: {
+        float: theme.direction ==='ltr' ? "right": "left",
+    },
+    contentPanelMenuOpen:{
+        width: "calc(100% - 240px)",
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+          }),
+        
+    },
+    contentPanelMenuClose: {
+        width: "calc(100% - 73px)",
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+          })
+    },
+   
 })
 
 class Dashboard extends React.Component{
@@ -24,23 +44,23 @@ class Dashboard extends React.Component{
         }))
     }
     render(){
-        const {root, appBar} = this.props.classes;
-
+        const {contentPanelMenuOpen,contentPane, contentPanelMenuClose} = this.props.classes;
+     
         return (
         <div>
-            <div className={appBar}>
+            <div>
                 <DashboardHeader onMenuButtonClick = {this.handleMenuButtonClick}/>
             </div>
 
 
-            <div className={root}>
+            <div>
 
                 {/* left menu drawer */}
 
                 
-                   
-                    <DashbaordDrawer open={this.state.isMenuOpen} drawerWidth="250px" />
-
+                    
+                        <DashbaordDrawer  open={this.state.isMenuOpen} drawerWidth="250px" />
+                    
                     {/* 
                         <NavLink to="/dashboard">dashboard</NavLink>
                         <NavLink to="/todos">todos</NavLink>
@@ -49,7 +69,12 @@ class Dashboard extends React.Component{
 
                 {/* right menu content */}
 
-                <div style={{flexGrow: 1}}>
+                <div className={  classNames(
+                    contentPane,
+                    {
+                    [contentPanelMenuOpen]: this.state.isMenuOpen,
+                    [contentPanelMenuClose]: !this.state.isMenuOpen
+                })}>
                     <Switch>
                     {
                         dashboardRouters.map((prop, key) => {
