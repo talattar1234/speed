@@ -1,10 +1,14 @@
 import axios from 'axios';
 
+const instance = axios.create({
+
+});
+
 
 const sendSingleAjaxRequest = (axiosParams) => {
     return new Promise(async (resolve,reject) => {
         try{
-            const result = await axios(axiosParams);
+            const result = await instance(axiosParams);
             resolve(result);
             return;
         }
@@ -33,3 +37,10 @@ export const sendAjaxRequest = ({retryNumber=1,axiosParams}={}) => {
 
 }
 
+export const setRestToken = (token) => {
+    instance.defaults.headers.common['Authorization'] =`Bearer ${ token }`;
+}
+
+export const clearRestToken = () => {
+    delete instance.defaults.headers.common['Authorization'] 
+}

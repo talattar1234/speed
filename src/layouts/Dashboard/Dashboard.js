@@ -7,7 +7,8 @@ import DashboardHeader from './DashboardHeader';
 import DashbaordDrawer from './DashboardDrawer';
 import dashboardRouters from "../../routers/dashboardRouters";
 import classNames from 'classnames';
-
+import {compose} from 'recompose';
+import withWidth from '@material-ui/core/withWidth';
 const styles = (theme) => ({
     root: {
       /*  display: "flex"*/
@@ -30,6 +31,9 @@ const styles = (theme) => ({
             duration: theme.transitions.duration.leavingScreen,
           })
     },
+    contentMobileMode: {
+        width: "100%"
+    }
    
 })
 
@@ -44,7 +48,13 @@ class Dashboard extends React.Component{
         }))
     }
     render(){
-        const {contentPanelMenuOpen,contentPane, contentPanelMenuClose} = this.props.classes;
+        const {contentPanelMenuOpen
+                ,contentPane,
+                contentPanelMenuClose,
+                contentMobileMode
+            } = this.props.classes;
+
+        const {width} = this.props;
      
         return (
         <div>
@@ -73,7 +83,8 @@ class Dashboard extends React.Component{
                     contentPane,
                     {
                     [contentPanelMenuOpen]: this.state.isMenuOpen,
-                    [contentPanelMenuClose]: !this.state.isMenuOpen
+                    [contentPanelMenuClose]: !this.state.isMenuOpen,
+                    [contentMobileMode] : width == 'xs'
                 })}>
                     <Switch>
                     {
@@ -91,4 +102,5 @@ class Dashboard extends React.Component{
     }
 
 }
-export default withStyles(styles)(Dashboard);
+export default compose(withStyles(styles),withWidth())(Dashboard)
+//export default withStyles(styles)(Dashboard);

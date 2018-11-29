@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {Drawer, List, ListItem, Divider, ListItemIcon, ListItemText} from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import Hidden from '@material-ui/core/Hidden';
 import classNames from 'classnames';
 
 const drawerWidth = 240;
@@ -55,6 +56,9 @@ class DashboardDrawer extends React.Component{
         const { classes } = this.props;
         const {open} = this.props;
         return(
+
+
+          <Hidden xsDown implementation="css">
             <Drawer
                className={classes.drawer}
                variant="permanent"
@@ -89,6 +93,7 @@ class DashboardDrawer extends React.Component{
           ))}
         </List>
       </Drawer>
+      </Hidden>
         )
     }
 }
