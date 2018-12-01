@@ -51,7 +51,7 @@ class Login extends React.Component {
         username: '',
         password: ''
     }
-
+    
     onUsernameChange = (e) => {
         const username = e.target.value;
         this.setState(()=>({
@@ -66,13 +66,18 @@ class Login extends React.Component {
     }
 
     logIn = (e)=> {
-        e.preventDefault();
+       
+          e.preventDefault();
         
-        const {username, password} = this.state;
-        signIn({username,password});
+          const {username, password} = this.state;
+          signIn({username,password}).then(({isAuth})=>{
+              // set error msg
+          });
+        
+        
     }
 
-    render(){
+    render() {
         const { classes } = this.props;
 
   return (
@@ -85,7 +90,7 @@ class Login extends React.Component {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} >
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
             <Input id="email"
@@ -104,7 +109,7 @@ class Login extends React.Component {
                 id="password"
                 autoComplete="current-password"
                 value={this.state.password}
-                onChange={this.onPasswordChange}
+                onSubmit={this.onPasswordChange}
              />
           </FormControl>
           <FormControlLabel

@@ -4,8 +4,8 @@ import Login from "../layouts/Login/Login"
 import NotFoundPage from "../layouts/NotFoundPage";
 
 const indexRoutes = [
-  
-  { path: "/page2", component: Page2},
+
+  { path: "/page2", component: Page2, isPrivate:true },
   { path: "/login", component: Login },
   { path: "/", component: Dashboard },
   /*{ component: NotFoundPage }*/

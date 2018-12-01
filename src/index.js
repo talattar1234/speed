@@ -1,19 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "regenerator-runtime/runtime";
-import CssBaseline from '@material-ui/core/CssBaseline';
+
 import CONFIG from './config';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import { test } from "./_test"
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import {RTL, LTR} from './direction';
+import MainLayout from './MainLayout';
 
 /*import './styles/styles.scss';*/
-import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 
-import indexRoutes from "./routers";
-import { getModalPropsPayload } from "./selectors/modalSelector";
+
+
+//import { getModalPropsPayload } from "./selectors/modalSelector";
 import theme from "./Themes/Theme";
 export const store = configureStore();
 
@@ -35,19 +36,7 @@ const jsx = (
     <DirectionWrapper>
         <MuiThemeProvider theme={theme}>
             <Provider store={store}>
-            <BrowserRouter>
-                <React.Fragment>
-                    <CssBaseline/>
-                    <Switch>
-                    {
-                        indexRoutes.map((prop,key)=>{
-                            return <Route path={prop.path} component={prop.component} key={key} />
-                        })
-                    }
-                </Switch>     
-                </React.Fragment>
-                
-            </BrowserRouter>
+                <MainLayout/>
             </Provider>
         </MuiThemeProvider>
     </DirectionWrapper>
