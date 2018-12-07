@@ -2,7 +2,7 @@ const CONFIG = {
 
     lang: "en",
     direction: "ltr",
-    isSimulationMode: true
+    isSimulationMode: false
 
 }
 

@@ -4,6 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from '@material-ui/core/styles';
 import HeaderUserMenuPopper from './HeaderUserMenuPopper';
+import {signOut} from '../../logics/userSettingsLogic';
 
 const styles = (theme) => ({
     root: {
@@ -37,7 +38,7 @@ class DashboardHeader extends React.Component {
                         </Typography>
                     </div>
                     <div>
-                       <HeaderUserMenuPopper/>
+                       <HeaderUserMenuPopper onLogout={signOut} />
                     </div>
                   </div>
                     

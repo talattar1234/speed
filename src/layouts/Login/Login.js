@@ -143,7 +143,7 @@ class Login extends React.Component {
                 id="password"
                 autoComplete="current-password"
                 value={this.state.password}
-                onSubmit={this.onPasswordChange}
+                onChange={this.onPasswordChange}
              />
           </FormControl>
           <FormControlLabel

@@ -38,6 +38,7 @@ const styles = theme => ({
       anchorEl: null,
       open: false,
     };
+    
 
     handleClick = event => {
       const { currentTarget } = event;
@@ -55,11 +56,13 @@ const styles = theme => ({
       this.setState({ open: false });
     };
 
+    logout = () => {
 
+    }
     render() {
-      const { classes } = this.props;
+      const { classes, onLogout } = this.props;
       const { anchorEl, open } = this.state;
-     
+      
   
       return (
         <div>
@@ -93,7 +96,7 @@ const styles = theme => ({
                       <ListItemIcon className={classes.icon}>
                         <InboxIcon />
                       </ListItemIcon>
-                      <ListItemText classes={{ primary: classes.primary }} inset primary="Inbox" />
+                      <ListItemText onClick={onLogout} classes={{ primary: classes.primary }} inset primary="Logout" />
                     </MenuItem>
                   </MenuList>
 

@@ -132,7 +132,10 @@ export const checkIfAuth = () => {
         const token = getToken();
         if(token){
             _serverCheckTokenValidation({token}).then(({isAuth})=>{
-                setUserSettingsFromToken();
+                if(isAuth){
+                    setUserSettingsFromToken();
+                }
+                
                 resolve({isAuth});
             }).catch((e)=>{
                 resolve({isAuth:false});
