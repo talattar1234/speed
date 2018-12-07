@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {compose, fromRenderProps} from 'recompose';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -11,7 +12,13 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import {signIn} from '../../logics/userSettingsLogic';
+import {signIn, checkIfAuth} from '../../logics/userSettingsLogic';
+import {getAuthMode} from '../../selectors/userSettingsSelector';
+//import {setUserSettingsFromToken} from '../../logics/userSettingsLogic';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+
+
 const styles = theme => ({
     main: {
       width: 'auto',
@@ -47,11 +54,37 @@ const styles = theme => ({
 
 
 class Login extends React.Component {
+    _isMounted = false;
+
     state = {
         username: '',
-        password: ''
+        password: '',
+        isInProgress: false
     }
     
+    componentDidMount(){
+      this._isMounted = true;
+      checkIfAuth()
+        .then(({isAuth})=>{
+          if(isAuth === true){
+            if(this._isMounted){
+              this.setState(()=>({
+                isInProgress: false
+              }))
+            }
+        
+          }
+        })
+        .catch((e)=>{
+
+        })
+      
+    }
+
+    componentWillUnmount(){
+      this._isMounted = false;
+    }
+
     onUsernameChange = (e) => {
         const username = e.target.value;
         this.setState(()=>({
@@ -66,19 +99,20 @@ class Login extends React.Component {
     }
 
     logIn = (e)=> {
-       
-          e.preventDefault();
-        
-          const {username, password} = this.state;
+      e.preventDefault();  
+      const {username, password} = this.state;
           signIn({username,password}).then(({isAuth})=>{
               // set error msg
-          });
-        
-        
+      });  
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, isAuth } = this.props;
+
+        let { from } = this.props.location.state || { from: { pathname: "/dashboard" } };
+        if(isAuth){
+          return <Redirect to={from} />
+        }
 
   return (
     <main className={classes.main}>
@@ -133,4 +167,12 @@ class Login extends React.Component {
     }
 
 }
-export default withStyles(styles)(Login);
+
+const mapStateToProps = (state) => ({
+  isAuth: getAuthMode(state)
+})
+
+
+
+export default compose(withStyles(styles),connect(mapStateToProps))(Login)
+

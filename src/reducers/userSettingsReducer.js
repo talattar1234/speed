@@ -1,17 +1,22 @@
 // Expenses Reducer
 const userSettingsReducerDefaultState = {
   isAuth: false,
-  username: ''
+  userInfo: {
+    username: ''
+  }
 };
 
 export default (state = userSettingsReducerDefaultState, action) => {
   switch (action.type) {
     case 'SET_USER_SETTINGS':
-      const {isAuth, username} = action.userSettings    
+      const {isAuth, userInfo} = action.userSettings    
       return {
        ...state,
         isAuth,
-        username
+        userInfo: {
+          ...state.userInfo,
+          ...userInfo
+        }
       }
   default:
       return state;

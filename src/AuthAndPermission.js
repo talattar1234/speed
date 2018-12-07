@@ -1,22 +1,22 @@
 import React from "react";
 import {
-    BrowserRouter as Router,
     Route,
     Redirect,
   } from "react-router-dom";
 
   // PrivateRoute - reffer to isAuth 
 export function PrivateRoute({ component: Component, ...rest }) {
+  const {isAuth} = rest;
     return (
       <Route
         {...rest}
         render={props =>
-            props.isAuth ? (
+            isAuth ? (
             <Component {...props} />
           ) : (
-            <Redirect
+            <Redirect 
               to={{
-                pathname: "/login",
+                pathname: "/",
                 state: { from: props.location }
               }}
             />

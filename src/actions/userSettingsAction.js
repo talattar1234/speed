@@ -1,8 +1,8 @@
-export const setUserSettings = ({username,isAuth}={}) => ({
+export const setUserSettings = ({userInfo,isAuth}={}) => ({
 
     type: "SET_USER_SETTINGS",
     userSettings: {
-        username,
+        userInfo,
         isAuth
     }
 })

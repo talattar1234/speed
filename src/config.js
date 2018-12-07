@@ -1,7 +1,8 @@
 const CONFIG = {
 
     lang: "en",
-    direction: "ltr"
+    direction: "ltr",
+    isSimulationMode: true
 
 }
 

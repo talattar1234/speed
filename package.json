@@ -52,6 +52,7 @@
     "handlebars": "^4.0.12",
     "handlebars-loader": "^1.7.0",
     "jss-rtl": "^0.2.3",
+    "jwt-decode": "^2.2.0",
     "normalize.css": "^8.0.0",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",

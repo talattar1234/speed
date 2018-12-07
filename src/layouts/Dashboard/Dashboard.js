@@ -1,8 +1,9 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
-
+import {connect} from 'react-redux';
 import {Switch, Route, Redirect, NavLink} from 'react-router-dom';
-
+import {getAuthMode} from '../../selectors/userSettingsSelector';
+import {PrivateRoute} from '../../AuthAndPermission';
 import DashboardHeader from './DashboardHeader';
 import DashbaordDrawer from './DashboardDrawer';
 import dashboardRouters from "../../routers/dashboardRouters";
@@ -54,8 +55,8 @@ class Dashboard extends React.Component{
                 contentMobileMode
             } = this.props.classes;
 
-        const {width} = this.props;
-     
+        const {width, isAuth} = this.props;
+            
         return (
         <div>
             <div>
@@ -91,7 +92,7 @@ class Dashboard extends React.Component{
                         dashboardRouters.map((prop, key) => {
                             if (prop.redirect)
                                 return <Redirect from={prop.path} to={prop.to} key={key} />;
-                            return <Route path={prop.path} component={prop.component} key={key} exact={prop.exact} />;
+                            return <Route path={prop.path} component={prop.component} key={key} exact={prop.exact}  />;
                     })}
                     </Switch>
                 </div>
@@ -102,5 +103,10 @@ class Dashboard extends React.Component{
     }
 
 }
+
+
+
+
+
 export default compose(withStyles(styles),withWidth())(Dashboard)
 //export default withStyles(styles)(Dashboard);

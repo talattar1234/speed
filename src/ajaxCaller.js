@@ -13,14 +13,14 @@ const sendSingleAjaxRequest = (axiosParams) => {
             return;
         }
         catch(e){
-            reject("error");
+            reject(e);
         }
     })
 }
 
 export const sendAjaxRequest = ({retryNumber=1,axiosParams}={}) => {
-
     return new Promise(async (resolve,reject) => {
+        let lastError;
         for(let i = 0; i < retryNumber || retryNumber == "inf"; ++i){
             try{
                 const result = await sendSingleAjaxRequest(axiosParams);
@@ -28,13 +28,11 @@ export const sendAjaxRequest = ({retryNumber=1,axiosParams}={}) => {
                 return;
             }
             catch(e){
-
+                lastError = e;
             }
         }
-        reject("error");
-        
+        reject(lastError.response);
     })
-
 }
 
 export const setRestToken = (token) => {

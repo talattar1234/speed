@@ -17,9 +17,9 @@ const dashboardRouters = [
       icon: "Todos",
       component: Todos
     },
-
+    /*
     { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" },
-  
+  */
 ]
 
 export default dashboardRouters;
