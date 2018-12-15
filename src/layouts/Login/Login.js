@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import {compose, fromRenderProps} from 'recompose';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
@@ -49,6 +51,10 @@ const styles = theme => ({
     submit: {
       marginTop: theme.spacing.unit * 3,
     },
+    submitIcon: {
+      marginRight: theme.spacing.unit*2,
+      marginleft: theme.spacing.unit*2,
+    }
   });
   
 
@@ -59,21 +65,20 @@ class Login extends React.Component {
     state = {
         username: '',
         password: '',
-        isInProgress: false
+        isInProgress: true,
+        errorMsg: ''
     }
     
     componentDidMount(){
       this._isMounted = true;
       checkIfAuth()
-        .then(({isAuth})=>{
-          if(isAuth === true){
+        .then(({isAuth})=>{     
             if(this._isMounted){
               this.setState(()=>({
                 isInProgress: false
+              
               }))
             }
-        
-          }
         })
         .catch((e)=>{
 
@@ -100,9 +105,26 @@ class Login extends React.Component {
 
     logIn = (e)=> {
       e.preventDefault();  
+      this.setState(()=>({
+        isInProgress: true
+      
+      }))
       const {username, password} = this.state;
           signIn({username,password}).then(({isAuth})=>{
-              // set error msg
+            if(this._isMounted){
+              this.setState(()=>({
+                isInProgress: false
+              }))
+            }
+      }).catch((e)=>{
+        if(this._isMounted){
+          const {message} = e;
+          this.setState((prevState)=>({
+            errorMsg: message,
+            isInProgress: false
+
+          }))
+        }
       });  
     }
 
@@ -122,7 +144,7 @@ class Login extends React.Component {
           <LockIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign in - {this.state.isInProgress && "loading..."}
         </Typography>
         <form className={classes.form} >
           <FormControl margin="normal" required fullWidth>
@@ -133,6 +155,7 @@ class Login extends React.Component {
                  autoFocus
                  value={this.state.username}
                  onChange={this.onUsernameChange}
+                 disabled={this.state.isInProgress}
                   />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
@@ -144,12 +167,20 @@ class Login extends React.Component {
                 autoComplete="current-password"
                 value={this.state.password}
                 onChange={this.onPasswordChange}
+                disabled={this.state.isInProgress}
              />
           </FormControl>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
+
+          {
+            this.state.errorMsg &&
+            <FormControl fullWidth error aria-describedby="component-error-text">
+              <FormHelperText >* {this.state.errorMsg}</FormHelperText>
+            </FormControl>
+          }
           <Button
             type="submit"
             fullWidth
@@ -157,8 +188,11 @@ class Login extends React.Component {
             color="primary"
             className={classes.submit}
             onClick={this.logIn}
+            disabled = {this.state.isInProgress}
           >
+            {this.state.isInProgress &&  <CircularProgress className={classes.submitIcon} color="primary" size={20}/>}
             Sign in
+          
           </Button>
         </form>
       </Paper>

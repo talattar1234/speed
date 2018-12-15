@@ -41,23 +41,30 @@ const _serverLogin = ({username,password}) => {
     return new Promise((resolve,reject)=>{
         if(CONFIG.isSimulationMode){
             setTimeout(()=>{
-                const token = {
-                    username,
-                    role: "admin"
+                if(username == password){
+                    const token = {
+                        username,
+                        role: "admin"
+                    }
+                    resolve({token: JSON.stringify(token)})
                 }
-                resolve({token: JSON.stringify(token)})
-            },1500)
+                else{
+                    reject({message: 'Wrong username \ password'})
+                }
+                
+            },2000)
         }
         else{
             sendAjaxRequest({axiosParams: {
                 method: 'post',
-                url: 'http://localhost:3000/api/login',
+                url: 'https://avihost.ddns.net:446/api/users/login', /*'http://localhost:3000/api/login',*/
                 data: {
-                    username,
-                    password
+                    userName: username,
+                    passWord: password
                 }
             }})
-            .then(({token})=>{
+            .then((res)=>{
+                const token = res.data;
                 resolve({token})
             })
             .catch((e)=>{
@@ -73,7 +80,7 @@ const _serverCheckTokenValidation = ({token}) => {
         if(CONFIG.isSimulationMode){
             setTimeout(()=>{
                 resolve({isAuth:true})
-            },1500)
+            },2000)
         }
         else{
             sendAjaxRequest({axiosParams:{
@@ -110,9 +117,10 @@ export const signIn = ({username, password}) => {
                 setRestToken(token);
                 const userInfo = decodeTokenPayload(token);
                 store.dispatch(setUserSettingsAction({isAuth,userInfo}))
+                resolve({isAuth: true});
             })
-            .catch((e)=>{
-
+            .catch(({message})=>{
+                reject({message});
             })
     })
 }

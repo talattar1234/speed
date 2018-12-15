@@ -23,7 +23,7 @@ class DashboardHeader extends React.Component {
    }
     render(){
         const {root, toolBar} = this.props.classes;
-
+        const {username} = this.props;
         return (
           
                 <AppBar position="sticky" color="primary" className={root}>
@@ -34,7 +34,7 @@ class DashboardHeader extends React.Component {
                             <MenuIcon/>
                         </IconButton>
                         <Typography variant="h5" color="inherit">
-                            My Dashboard Toolbar
+                            Hello {username}
                         </Typography>
                     </div>
                     <div>

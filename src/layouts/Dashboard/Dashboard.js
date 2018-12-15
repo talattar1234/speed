@@ -2,8 +2,9 @@ import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import {connect} from 'react-redux';
 import {Switch, Route, Redirect, NavLink} from 'react-router-dom';
-import {getAuthMode} from '../../selectors/userSettingsSelector';
-import {PrivateRoute} from '../../AuthAndPermission';
+import {getUsername} from '../../selectors/userSettingsSelector';
+//import {PrivateRoute} from '../../AuthAndPermission';
+
 import DashboardHeader from './DashboardHeader';
 import DashbaordDrawer from './DashboardDrawer';
 import dashboardRouters from "../../routers/dashboardRouters";
@@ -55,12 +56,12 @@ class Dashboard extends React.Component{
                 contentMobileMode
             } = this.props.classes;
 
-        const {width, isAuth} = this.props;
+        const {width, username} = this.props;
             
         return (
         <div>
             <div>
-                <DashboardHeader onMenuButtonClick = {this.handleMenuButtonClick}/>
+                <DashboardHeader username={username} onMenuButtonClick = {this.handleMenuButtonClick}/>
             </div>
 
 
@@ -105,8 +106,10 @@ class Dashboard extends React.Component{
 }
 
 
+const mapStateToProps = (state)=>({
+    username: getUsername(state)
+})
 
 
-
-export default compose(withStyles(styles),withWidth())(Dashboard)
+export default compose(withStyles(styles),withWidth(),connect(mapStateToProps))(Dashboard)
 //export default withStyles(styles)(Dashboard);

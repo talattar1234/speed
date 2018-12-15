@@ -31,7 +31,7 @@ export const sendAjaxRequest = ({retryNumber=1,axiosParams}={}) => {
                 lastError = e;
             }
         }
-        reject(lastError.response);
+        reject({message: lastError.message});
     })
 }
 
