@@ -6,12 +6,16 @@ import Page404 from '../layouts/Page404/Page404';
 
 
 const indexRoutes = [
-
+  { path: "/page2", component: Page2, isPrivate:true },
+  { path: "/login", component: Login },
+  { path: "/", component: Dashboard },
+/*
   { path: "/", component: Login, exact: true},
-  /*{ path: "/login", component: Login },*/
+  { path: "/login", component: Login },
   { path: "/page2", component: Page2, isPrivate:true },
   { path: "/dashboard", component: Dashboard,  isPrivate:true },
   { path: "/", component: Page404},
+  */
   /*{ component: NotFoundPage }*/
 
 ];
