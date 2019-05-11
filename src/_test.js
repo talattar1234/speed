@@ -1,7 +1,9 @@
 import {sendAjaxRequest} from './ajaxCaller';
-
+import {navigateTo} from './mainHistory';
 
 export const test = () => {
+
+
     sendAjaxRequest({retryNumber: 10,axiosParams: {
         method: "get",
         url: 'https://httpb3in.org/get',

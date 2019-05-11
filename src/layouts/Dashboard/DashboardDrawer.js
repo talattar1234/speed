@@ -5,7 +5,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Hidden from '@material-ui/core/Hidden';
 import classNames from 'classnames';
-
+import { NavLink } from 'react-router-dom'
 const drawerWidth = 240;
 const styles = theme => ({
     root: {
@@ -48,6 +48,7 @@ const styles = theme => ({
       padding: theme.spacing.unit * 3,
     },
     toolbar: theme.mixins.toolbar,
+
   });
 
 
@@ -76,11 +77,16 @@ class DashboardDrawer extends React.Component{
       >
         <div className={classes.toolbar} />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (         
+          {['dashboard', 'todos', 'Send email', 'Drafts'].map((text, index) => (         
+           
             <ListItem button key={text}>       
+            <NavLink to={`/${text}`} activeClassName="selected-drawer-list-item">
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
+              </NavLink> 
             </ListItem>
+            
+          
           ))}
         </List>
         <Divider />
