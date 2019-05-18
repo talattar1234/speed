@@ -6,3 +6,7 @@ export const setUserSettings = ({userInfo,isAuth}={}) => ({
         isAuth
     }
 })
+
+export const logOut = ()=> ({
+    type: "USER_LOGOUT"
+})

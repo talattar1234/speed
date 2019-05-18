@@ -1,5 +1,5 @@
 import {setRestToken, clearRestToken, sendAjaxRequest} from '../ajaxCaller';
-import {setUserSettings as setUserSettingsAction} from '../actions/userSettingsAction';
+import {setUserSettings as setUserSettingsAction, logOut as logOutAction} from '../actions/userSettingsAction';
 import * as jwt_decode from "jwt-decode";
 import CONFIG from '../config';
 import {store} from '../index';
@@ -130,7 +130,8 @@ export const signOut = () => {
         const isAuth = false;
         removeToken(); //local storage
         clearRestToken();
-        store.dispatch(setUserSettingsAction({isAuth}))
+        //store.dispatch(setUserSettingsAction({isAuth}))
+        store.dispatch(logOutAction());
         resolve({isAuth});
     })
 }
