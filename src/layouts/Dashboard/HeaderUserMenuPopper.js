@@ -19,7 +19,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 
 const styles = theme => ({
     typography: {
-    /* padding: theme.spacing.unit * 2,*/
+    /* padding: theme.spacing(1) * 2,*/
     },
     menuItem: {
       '&:focus': {
