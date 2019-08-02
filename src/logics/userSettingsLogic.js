@@ -57,7 +57,8 @@ const _serverLogin = ({username,password}) => {
         else{
             sendAjaxRequest({axiosParams: {
                 method: 'post',
-                url: 'https://avihost.ddns.net:446/api/users/login', /*'http://localhost:3000/api/login',*/
+                /*url: 'https://avihost.ddns.net:446/api/users/login',*/
+                url: 'http://localhost:3000/api/login',
                 data: {
                     userName: username,
                     passWord: password
