@@ -4,6 +4,11 @@ import {withStyles} from '@material-ui/core/styles';
 import {LTR} from '../../direction';
 import withWidth from '@material-ui/core/withWidth';
 import compose from 'recompose/compose';
+import {Plugins} from "@capacitor/core";
+
+
+const {Geolocation} = Plugins;
+
 const styles = (theme) => ({
     root: {
         
@@ -29,6 +34,13 @@ const styles = (theme) => ({
 
 class Dashboard extends React.Component {
     
+    getGeoLocation = ()=>{
+        Geolocation.getCurrentPosition().then((position)=>{
+            const {latitude, longitude} = position.coords;
+            alert(`lat: ${latitude}, long: ${longitude}`);
+        });
+    }
+
     render(){
 
         const {root,myRaw,ele1} = this.props.classes;
@@ -47,6 +59,7 @@ class Dashboard extends React.Component {
 
                     <div className = {ele1}>
                         This is a responsive element - {width}
+                        <button onClick={this.getGeoLocation}>Get Coordinates</button>
                     </div>
 
                     

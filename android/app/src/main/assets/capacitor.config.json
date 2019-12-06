@@ -1,0 +1,7 @@
+{
+  "appId": "com.example.app",
+  "appName": "Speed",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist"
+}
