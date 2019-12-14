@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { getVisibleTodos } from '../selectors/todosSelector';
 import Todo from "../components/Todo";
 import {
@@ -8,39 +8,42 @@ import {
         openEditTodoModal as openEditTodoModalLogic
     } from '../logics/todosLogic';
 
-class TodosList extends React.Component {
-    handleEditTodo = (id) => {
+const TodosList = (props)=> {
+    const handleEditTodo = (id) => {
         openEditTodoModalLogic({id})
     }
 
-    handleRemoveTodo = (id) => {
+    const handleRemoveTodo = (id) => {
         removeTodoLogic(id)
     }
     
-    addTodo = () => {
+    const addTodo = () => {
         openNewTodoModalLogic();
     }
-
-    render() {
+    const { todos } = useSelector(state => ({
+     
+            todos: getVisibleTodos(state)
+      }));
+    
         return(
         <div className="todo-list">
-            <h2 className="todo-list__header">{this.props.title}</h2>
+            <h2 className="todo-list__header">{props.title}</h2>
             <div className="todo-list__actions"> 
                 <div 
                     className="todo-list__add-button"
-                    onClick={this.addTodo}>
+                    onClick={addTodo}>
                         + Add TODO
                 </div>
             </div>
 
             <div className="todo-list__all-items">
             {
-                this.props.todos.map((todo)=>(
+                todos.map((todo)=>(
                 <Todo
                  key={todo.id}
                  todo={todo}
-                 onRemoveTodo={this.handleRemoveTodo}
-                 onEditTodo = {this.handleEditTodo}
+                 onRemoveTodo={handleRemoveTodo}
+                 onEditTodo = {handleEditTodo}
                 />
                     
                 
@@ -51,14 +54,10 @@ class TodosList extends React.Component {
         </div>)
     }
 
-}
+
 TodosList.defaultProps = {
     headerText: 'Items'
 }
 
-const mapStateToProps = (state, props) => {
-  return {
-    todos: getVisibleTodos(state)
-  };
-};
-export default connect(mapStateToProps)(TodosList);
+
+export default TodosList;
