@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {Drawer, List, ListItem, Divider, ListItemIcon, ListItemText} from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
@@ -7,7 +7,7 @@ import Hidden from '@material-ui/core/Hidden';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom'
 const drawerWidth = 240;
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
     root: {
       display: 'flex',
       zIndex: theme.zIndex.drawer
@@ -49,16 +49,16 @@ const styles = theme => ({
     },
     toolbar: theme.mixins.toolbar,
 
-  });
+  }));
 
 
-class DashboardDrawer extends React.Component{
-    render(){
-        const { classes } = this.props;
-        const {open} = this.props;
+const DashboardDrawer = (props)=> {
+    
+        const  classes  = useStyles();
+
+        const {open} = props;
+
         return(
-
-
           <Hidden xsDown implementation="css">
             <Drawer
                className={classes.drawer}
@@ -101,7 +101,7 @@ class DashboardDrawer extends React.Component{
       </Drawer>
       </Hidden>
         )
-    }
 }
 
-export default withStyles(styles)(DashboardDrawer);
+export default DashboardDrawer
+//export default withStyles(styles)(DashboardDrawer);
