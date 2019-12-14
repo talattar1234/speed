@@ -1,6 +1,7 @@
-import React from 'react';
-import {withStyles} from '@material-ui/core/styles';
-import {connect} from 'react-redux';
+import React, {useState} from 'react';
+import {makeStyles} from '@material-ui/core/styles';
+import useWidth from "../../customHooks/useWidth";
+import {useSelector} from 'react-redux';
 import {Switch, Route, Redirect, NavLink} from 'react-router-dom';
 import {getUsername} from '../../selectors/userSettingsSelector';
 //import {PrivateRoute} from '../../AuthAndPermission';
@@ -11,7 +12,7 @@ import dashboardRouters from "../../routers/dashboardRouters";
 import classNames from 'classnames';
 import {compose} from 'recompose';
 import withWidth from '@material-ui/core/withWidth';
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
     root: {
       /*  display: "flex"*/
     },
@@ -37,31 +38,35 @@ const styles = (theme) => ({
         width: "100%"
     }
    
-})
+}));
 
-class Dashboard extends React.Component{
-    state = {
-        isMenuOpen: true
+const Dashboard  = (props) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(true);
+
+
+    const handleMenuButtonClick = () =>{
+      setIsMenuOpen(!isMenuOpen);
     }
 
-    handleMenuButtonClick = () =>{
-        this.setState((prevState)=>({
-            isMenuOpen: !prevState.isMenuOpen
-        }))
-    }
-    render(){
-        const {contentPanelMenuOpen
-                ,contentPane,
-                contentPanelMenuClose,
-                contentMobileMode
-            } = this.props.classes;
+    const width = useWidth();
+    const classes = useStyles();
+    const {contentPanelMenuOpen
+        ,contentPane,
+        contentPanelMenuClose,
+        contentMobileMode
+    } = classes;
+  
+    
+    const {username} = useSelector((state)=>({
+        username: getUsername(state)
+    }));
 
-        const {width, username} = this.props;
-            
-        return (
+    
+
+    return (
         <div>
             <div>
-                <DashboardHeader username={username} onMenuButtonClick = {this.handleMenuButtonClick}/>
+                <DashboardHeader username={username} onMenuButtonClick = {handleMenuButtonClick}/>
             </div>
 
 
@@ -71,7 +76,7 @@ class Dashboard extends React.Component{
 
                 
                     
-                        <DashbaordDrawer  open={this.state.isMenuOpen} drawerWidth="250px" />
+                        <DashbaordDrawer  open={isMenuOpen} drawerWidth="250px" />
                     
                     {/* 
                         <NavLink to="/dashboard">dashboard</NavLink>
@@ -84,8 +89,8 @@ class Dashboard extends React.Component{
                 <div className={  classNames(
                     contentPane,
                     {
-                    [contentPanelMenuOpen]: this.state.isMenuOpen,
-                    [contentPanelMenuClose]: !this.state.isMenuOpen,
+                    [contentPanelMenuOpen]: isMenuOpen,
+                    [contentPanelMenuClose]: !isMenuOpen,
                     [contentMobileMode] : width == 'xs'
                 })}>
                     <Switch>
@@ -103,13 +108,9 @@ class Dashboard extends React.Component{
         )
     }
 
-}
 
 
-const mapStateToProps = (state)=>({
-    username: getUsername(state)
-})
+export default Dashboard;
+//export default compose(withStyles(styles),withWidth(),connect(mapStateToProps))()
 
-
-export default compose(withStyles(styles),withWidth(),connect(mapStateToProps))(Dashboard)
 //export default withStyles(styles)(Dashboard);
