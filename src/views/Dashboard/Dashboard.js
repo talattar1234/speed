@@ -3,6 +3,7 @@ import {TextField, Typography, FormHelperText} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import {LTR} from '../../direction';
 import useWidth from '../../customHooks/useWidth';
+import BitRate from './BitRate';
 
 //import compose from 'recompose/compose';
 
@@ -44,6 +45,10 @@ const Dashboard = () => {
                         This is a responsive element - {width}
                     </div>
 
+                    <BitRate lineColor='red' setIntervalTime={10}/>
+                    <BitRate lineColor='blue' setIntervalTime={30}/>
+                    <BitRate lineColor='orange' setIntervalTime={50}/>
+                    <BitRate lineColor='pink' setIntervalTime={60}/>
                     
             </React.Fragment>
         );
