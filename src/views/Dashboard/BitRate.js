@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 let _data = [
     {name: '1', uv: 0},
@@ -6,6 +6,11 @@ let _data = [
 let _counter = 1
 let _addSum = 100;
 let _maximumItems = 300;
+
+
+/** UseInterval !!!!!!!!! */
+
+
 
 
 const BitRate = ({lineColor, setIntervalTime}) =>{
@@ -27,7 +32,7 @@ const BitRate = ({lineColor, setIntervalTime}) =>{
         setData(_data.slice())
     }
 
-    useState(()=>{
+    useEffect(()=>{
        const  _interval = setInterval(setUpdates,setIntervalTime);
         return ()=>{
             clearInterval(_interval)
