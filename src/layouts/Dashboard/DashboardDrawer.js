@@ -1,6 +1,6 @@
-import React, {forwardRef } from 'react';
+import React, {forwardRef, Children } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Drawer,Button, List, ListItem, Divider, ListItemIcon, ListItemText,  colors} from '@material-ui/core';
+import {Drawer,Button, List, ListItem, Divider, ListItemIcon, ListItemText,  colors, Tooltip} from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Hidden from '@material-ui/core/Hidden';
@@ -16,6 +16,13 @@ const CustomRouterLink = forwardRef((props, ref) => (
     <NavLink {...props} />
   </div>
 ));
+
+const TooltipWrapper = ({isTooltipActive, title, children})=>{
+ 
+  return isTooltipActive? <Tooltip placement="right" title={title} aria-label={title}>
+    {children}
+  </Tooltip> : <>{children}</>
+}
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -55,38 +62,26 @@ const useStyles = makeStyles(theme => ({
       // }
     },
 
-    drawerPaper: {
-      width: drawerWidth,
-    },
     content: {
-      minWidth: 0,
       overflow: 'hidden',
       padding: theme.spacing(1) * 3,
     },
     toolbar: theme.mixins.toolbar,
     item: {
-      display: 'flex',
-      paddingTop: 0,
-      paddingBottom: 0
-    },
-    button: {
-      /*color: colors.blueGrey[800],*/
       minWidth: 0,
-      padding: '10px 8px',
+      padding: theme.spacing(1),
       justifyContent: 'flex-start',
       textTransform: 'none',
-      letterSpacing: 0,
       width: '100%',
-      fontWeight: theme.typography.fontWeightMedium
+      display: 'flex',
     },
+    
     icon: {
       color: theme.palette.icon,
       width: 24,
       height: 24,
       display: 'flex',
       alignItems: 'center',
-      marginRight: theme.spacing(2),
-
     },
     active: {
       color: theme.palette.primary.main,
@@ -102,7 +97,7 @@ const DashboardDrawer = (props)=> {
     
         const  classes  = useStyles();
 
-        const {open} = props;
+        const {open, menuItems} = props;
 
         return(
           <Hidden xsDown implementation="css">
@@ -123,15 +118,23 @@ const DashboardDrawer = (props)=> {
       >
         <div className={classes.toolbar} />
         <List style={{padding: '0.8rem'}}>
-          {['dashboard', 'todos', 'Send email', 'Drafts'].map((text, index) => (         
-           
-            <ListItem        to={`/${text}`}  activeClassName={classes.active} button component={CustomRouterLink} disableGutters key={text} className={classNames({
+          {menuItems.map((menuItem, index) => (         
+           <TooltipWrapper isTooltipActive={!open} title={menuItem.title} key={menuItem.title}>
+            <ListItem to={menuItem.path}  activeClassName={classes.active} button component={CustomRouterLink} disableGutters  className={classNames({
               [classes.item]: true,
-              [classes.button]: true,
+            
             })} 
           >
-            <div className={classes.icon}><InboxIcon /></div>
-            {text}
+            <ListItemIcon className={classes.icon}>
+            {/* <InboxIcon /> */}
+            {menuItem.icon}
+            </ListItemIcon>
+            <ListItemText>
+            {menuItem.title}
+            </ListItemText>
+
+            
+            
 
             {/* <NavLink to={`/${text}`} activeClassName="selected-drawer-list-item">
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
@@ -139,7 +142,7 @@ const DashboardDrawer = (props)=> {
               </NavLink>  */}
             </ListItem>
             
-          
+            </TooltipWrapper>
           ))}
         </List>
         <Divider />

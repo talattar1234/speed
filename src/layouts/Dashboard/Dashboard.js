@@ -5,22 +5,50 @@ import {useSelector} from 'react-redux';
 import {Switch, Route, Redirect, NavLink} from 'react-router-dom';
 import {getUsername} from '../../selectors/userSettingsSelector';
 //import {PrivateRoute} from '../../AuthAndPermission';
-
+import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DashboardHeader from './DashboardHeader';
 import DashbaordDrawer from './DashboardDrawer';
 import dashboardRouters from "../../routers/dashboardRouters";
 import classNames from 'classnames';
 import {compose} from 'recompose';
 import withWidth from '@material-ui/core/withWidth';
+
+
+const menuItems = [
+    {
+        title: 'Dashbaord',
+        path: '/dashboard',
+        icon: <InboxIcon/>
+    },
+    {
+        title: 'Todos',
+        path: '/todos',
+        icon: <InboxIcon/>
+    },
+    {
+        title: 'Send Email',
+        path: '/dashboard1',
+        icon: <InboxIcon/>
+    },
+    {
+        title: 'Draft',
+        path: '/dashboard2',
+        icon: <InboxIcon/>
+    },
+
+
+]
+
 const useStyles = makeStyles((theme) => ({
     root: {
       /*  display: "flex"*/
     },
     contentPane: {
         float: theme.direction ==='ltr' ? "right": "left",
+        flexGrow: 1
     },
     contentPanelMenuOpen:{
-        width: "calc(100% - 240px)",
+        
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
@@ -28,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
         
     },
     contentPanelMenuClose: {
-        width: "calc(100% - 73px)",
+       
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -70,13 +98,13 @@ const Dashboard  = (props) => {
             </div>
 
 
-            <div>
+            <div style={{display: 'flex'}}>
 
                 {/* left menu drawer */}
 
                 
                     
-                        <DashbaordDrawer  open={isMenuOpen} drawerWidth="250px" />
+                        <DashbaordDrawer menuItems={menuItems}  open={isMenuOpen} drawerWidth="250px" />
                     
                     {/* 
                         <NavLink to="/dashboard">dashboard</NavLink>
