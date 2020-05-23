@@ -11,7 +11,7 @@ import { NavLink } from 'react-router-dom';
 const CustomRouterLink = forwardRef((props, ref) => (
   <div
     ref={ref}
-    style={{ flexGrow: 1 }}
+    style={{ flexGrow: 1, minWidth: 0 }}
   >
     <NavLink {...props} />
   </div>
@@ -27,9 +27,11 @@ const useStyles = makeStyles(theme => ({
       width: drawerWidth,
       flexShrink: 0,
       whiteSpace: 'nowrap',
+      overflow: 'hidden',
     
     },
     drawerOpen: {
+      overflow: 'hidden',
       width: drawerWidth,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
@@ -37,25 +39,28 @@ const useStyles = makeStyles(theme => ({
       }),
     },
     drawerClose: {
+      overflow: 'hidden',
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      overflowX: 'hidden',
-      width: theme.spacing(7) + 1,
-      [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(9) + 1,
-      },
-      '&:hover': {
-        width: drawerWidth,
-      }
+      
+      width: '5.7rem',
+      // width: theme.spacing(7) + 1,
+      // [theme.breakpoints.up('sm')]: {
+      //   width: theme.spacing(9) + 1,
+      // },
+      // '&:hover': {
+      //   width: drawerWidth,
+      // }
     },
 
     drawerPaper: {
       width: drawerWidth,
     },
     content: {
-      flexGrow: 1,
+      minWidth: 0,
+      overflow: 'hidden',
       padding: theme.spacing(1) * 3,
     },
     toolbar: theme.mixins.toolbar,
@@ -66,6 +71,7 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
       /*color: colors.blueGrey[800],*/
+      minWidth: 0,
       padding: '10px 8px',
       justifyContent: 'flex-start',
       textTransform: 'none',
@@ -116,7 +122,7 @@ const DashboardDrawer = (props)=> {
         })}
       >
         <div className={classes.toolbar} />
-        <List style={{padding: '1.6rem'}}>
+        <List style={{padding: '0.8rem'}}>
           {['dashboard', 'todos', 'Send email', 'Drafts'].map((text, index) => (         
            
             <ListItem  disableGutters key={text} className={classes.item}>       
