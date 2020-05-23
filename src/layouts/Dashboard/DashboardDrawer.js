@@ -1,11 +1,22 @@
-import React from 'react';
+import React, {forwardRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Drawer, List, ListItem, Divider, ListItemIcon, ListItemText} from '@material-ui/core';
+import {Drawer,Button, List, ListItem, Divider, ListItemIcon, ListItemText,  colors} from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Hidden from '@material-ui/core/Hidden';
 import classNames from 'classnames';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+
+
+const CustomRouterLink = forwardRef((props, ref) => (
+  <div
+    ref={ref}
+    style={{ flexGrow: 1 }}
+  >
+    <NavLink {...props} />
+  </div>
+));
+
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
     root: {
@@ -48,7 +59,36 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(1) * 3,
     },
     toolbar: theme.mixins.toolbar,
+    item: {
+      display: 'flex',
+      paddingTop: 0,
+      paddingBottom: 0
+    },
+    button: {
+      /*color: colors.blueGrey[800],*/
+      padding: '10px 8px',
+      justifyContent: 'flex-start',
+      textTransform: 'none',
+      letterSpacing: 0,
+      width: '100%',
+      fontWeight: theme.typography.fontWeightMedium
+    },
+    icon: {
+      color: theme.palette.icon,
+      width: 24,
+      height: 24,
+      display: 'flex',
+      alignItems: 'center',
+      marginRight: theme.spacing(2),
 
+    },
+    active: {
+      color: theme.palette.primary.main,
+      fontWeight: theme.typography.fontWeightMedium,
+      '& $icon': {
+        color: theme.palette.primary.main
+      }
+    }
   }));
 
 
@@ -76,14 +116,23 @@ const DashboardDrawer = (props)=> {
         })}
       >
         <div className={classes.toolbar} />
-        <List>
+        <List style={{padding: '1.6rem'}}>
           {['dashboard', 'todos', 'Send email', 'Drafts'].map((text, index) => (         
            
-            <ListItem button key={text}>       
-            <NavLink to={`/${text}`} activeClassName="selected-drawer-list-item">
+            <ListItem  disableGutters key={text} className={classes.item}>       
+            <Button
+            activeClassName={classes.active}
+            className={classes.button}
+            component={CustomRouterLink}
+            to={`/${text}`}
+          >
+            <div className={classes.icon}><InboxIcon /></div>
+            {text}
+          </Button>
+            {/* <NavLink to={`/${text}`} activeClassName="selected-drawer-list-item">
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
-              </NavLink> 
+              </NavLink>  */}
             </ListItem>
             
           

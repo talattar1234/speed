@@ -9,7 +9,7 @@ let _maximumItems = 300;
 
 
 const BitRate = ({lineColor, setIntervalTime}) =>{
-    let _interval;
+    
     const [data, setData] = useState(_data)
     const setUpdates = ()=>{
         const newRow = {
@@ -28,7 +28,7 @@ const BitRate = ({lineColor, setIntervalTime}) =>{
     }
 
     useState(()=>{
-        _interval = setInterval(setUpdates,setIntervalTime);
+       const  _interval = setInterval(setUpdates,setIntervalTime);
         return ()=>{
             clearInterval(_interval)
         }

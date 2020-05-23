@@ -5,7 +5,7 @@ import CONFIG from "../config";
 const theme = createMuiTheme({
     direction: CONFIG.direction,
     palette: {
-        type: "light",
+        type: "dark",
         primary: blue
       },
     typography: {
