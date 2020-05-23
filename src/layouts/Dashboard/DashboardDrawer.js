@@ -125,16 +125,14 @@ const DashboardDrawer = (props)=> {
         <List style={{padding: '0.8rem'}}>
           {['dashboard', 'todos', 'Send email', 'Drafts'].map((text, index) => (         
            
-            <ListItem  disableGutters key={text} className={classes.item}>       
-            <Button
-            activeClassName={classes.active}
-            className={classes.button}
-            component={CustomRouterLink}
-            to={`/${text}`}
+            <ListItem        to={`/${text}`}  activeClassName={classes.active} button component={CustomRouterLink} disableGutters key={text} className={classNames({
+              [classes.item]: true,
+              [classes.button]: true,
+            })} 
           >
             <div className={classes.icon}><InboxIcon /></div>
             {text}
-          </Button>
+
             {/* <NavLink to={`/${text}`} activeClassName="selected-drawer-list-item">
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
