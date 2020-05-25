@@ -46,5 +46,7 @@ ReactDOM.render(jsx, document.getElementById("indexReact"));
 
 store.dispatch({type: "ADD_TODO",todo: {id: '1', description:'step by step',createdAt: Date.now()} })
 store.dispatch({type: "ADD_TODO",todo: {id: '2', description:'ste3',createdAt: Date.now()} })
+store.dispatch({type: "ADD_TODO",todo: {id: '3', description:'ste3',createdAt: Date.now()} })
+store.dispatch({type: "ADD_TODO",todo: {id: '4', description:'stfw3',createdAt: Date.now()} })
 
 test();

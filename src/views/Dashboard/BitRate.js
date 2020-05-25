@@ -46,7 +46,7 @@ const BitRate = ({lineColor, setIntervalTime}) =>{
 
   <LineChart width={1000} height={150} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
     <Line type="monotone" dataKey="uv" stroke={lineColor} strokeWidth={2} isAnimationActive={false} dot={false} activeDot={false} />
-    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+    {/* <CartesianGrid stroke="#ccc" strokeDasharray="5 5" /> */}
     <XAxis dataKey="name" />
     <YAxis type="number" domain={[0, 150]}   />
    
