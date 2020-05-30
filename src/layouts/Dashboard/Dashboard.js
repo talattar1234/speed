@@ -26,8 +26,8 @@ const menuItems = [
         icon: <InboxIcon/>
     },
     {
-        title: 'Send Email',
-        path: '/dashboard1',
+        title: 'Graphs',
+        path: '/graphs',
         icon: <InboxIcon/>
     },
     {

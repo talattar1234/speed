@@ -4,6 +4,9 @@ import {makeStyles} from '@material-ui/core/styles';
 import {LTR} from '../../direction';
 import useWidth from '../../customHooks/useWidth';
 import BitRate from './BitRate';
+import MyFormikForm from '../../components/MyFormikForm';
+import BitRate2 from './BitRate2';
+import BitRate3 from './BitRate3';
 
 //import compose from 'recompose/compose';
 
@@ -44,11 +47,12 @@ const Dashboard = () => {
                     <div className = {ele1}>
                         This is a responsive element - {width}
                     </div>
-
-                    <BitRate lineColor='red' setIntervalTime={10}/>
-                    <BitRate lineColor='blue' setIntervalTime={30}/>
-                    <BitRate lineColor='orange' setIntervalTime={50}/>
-                    <BitRate lineColor='pink' setIntervalTime={60}/>
+<MyFormikForm/>
+                    <BitRate2 lineColor='red' setIntervalTime={10}/>
+                    <BitRate3 lineColor='orange' setIntervalTime={100}/>
+                    <BitRate3 lineColor='blue' setIntervalTime={100}/>
+                   
+                    <BitRate3 lineColor='pink' setIntervalTime={100}/>
                     
             </React.Fragment>
         );
